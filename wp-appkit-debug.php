@@ -5,6 +5,7 @@
   Description: Display WP-AppKit debug information in Back Office
   Author:      Uncategorized Creations
   Author URI:  http://getwpappkit.com
+  Version:     1.0.0
   License:     GPL-2.0+
   License URI: http://www.gnu.org/licenses/gpl-2.0.txt
   Copyright:   2013-2016 Uncategorized Creations
@@ -40,8 +41,7 @@ class WpAppKitDebug {
         <div class="wrap">
             <h2>WP-AppKit debug</h2>
             <h2 class="nav-tab-wrapper">
-				<a href="<?php echo esc_url( add_query_arg( array( 'wpak_debug_page' => 'general' ), $debug_page_base_url ) ); ?>" class="nav-tab <?php echo $active_tab == 'rewrite_rules' ? 'nav-tab-active' : ''; ?>">Rewrite Rules</a>
-                <a href="<?php echo esc_url( add_query_arg( array( 'wpak_debug_page' => 'plugins' ), $debug_page_base_url ) ); ?>" class="nav-tab <?php echo $active_tab == 'rewrite_rules' ? 'nav-tab-active' : ''; ?>">Plugins</a>
+				<a href="<?php echo esc_url( add_query_arg( array( 'wpak_debug_page' => 'rewrite_rules' ), $debug_page_base_url ) ); ?>" class="nav-tab <?php echo $active_tab == 'rewrite_rules' ? 'nav-tab-active' : ''; ?>">Rewrite Rules</a>
 			</h2>
             <div class="wrap-<?php echo $active_tab; ?>">
 				<?php 
@@ -127,12 +127,8 @@ class WpAppKitDebug {
         <?php
     }
     
-    protected static function plugins() {
-        
-    }
-    
     protected static function get_debug_page_base_url() {
-        return admin_url( 'admin.php?page=wpak_debug_page' );
+        return admin_url( 'admin.php?page=wpak_debug' );
     }
 
     protected static function get_rewrite_rule_match( $url ) {
