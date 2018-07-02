@@ -71,7 +71,6 @@ class WpAppKitDebug {
             $wpak_webservice_url = WpakWebServices::get_app_web_service_url( $first_app->ID, 'synchronization' );
             $wpak_webservice_url_match = self::get_rewrite_rule_match(str_replace( trailingslashit( $home_url ), '', $wpak_webservice_url));
         }
-        
         ?>
 
         <table class="wp-list-table widefat fixed striped wpak-rewrite-rules">
@@ -120,8 +119,14 @@ class WpAppKitDebug {
             </tbody>
         </table>
 
+        <h3>.htaccess</h3>
+        <div id="htaccess">
+            <?php echo nl2br( $wp_rewrite->mod_rewrite_rules() ); ?>
+        </div>
+
         <style>
             table.wpak-rewrite-rules{ margin: 10px 0; }
+            #htaccess{ border:1px solid #e5e5e5; background: #fff; padding: 10px;}
         </style>
         
         <?php
