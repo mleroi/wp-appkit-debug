@@ -71,6 +71,10 @@ class WpAppKitDebug {
             $wpak_webservice_url = WpakWebServices::get_app_web_service_url( $first_app->ID, 'synchronization' );
             $wpak_webservice_url_match = self::get_rewrite_rule_match(str_replace( trailingslashit( $home_url ), '', $wpak_webservice_url));
         }
+
+        $home_path = get_home_path();
+        $htaccess_file = $home_path.'.htaccess';
+
         ?>
 
         <table class="wp-list-table widefat fixed striped wpak-rewrite-rules">
@@ -119,9 +123,22 @@ class WpAppKitDebug {
             </tbody>
         </table>
 
-        <h3>.htaccess</h3>
+        <h3>.htaccess:</h3>
         <div id="htaccess">
-            <?php echo nl2br( $wp_rewrite->mod_rewrite_rules() ); ?>
+            
+            <?php if( !is_writable( $home_path ) ): ?>
+                <p><?php echo $home_path; ?> is not writable.</p>
+            <?php endif; ?>
+
+            <?php if ( !file_exists( $htaccess_file ) ): ?>
+                <p>No .htaccess file</p>
+            <?php else: ?>
+                <?php if( !is_writable( $htaccess_file ) ): ?>
+                    <p><?php echo $home_path; ?> is not writable.</p>
+                <?php endif; ?>
+                <p><?php echo nl2br( file_get_contents( $htaccess_file ) ); ?></p>
+            <?php endif; ?>
+
         </div>
 
         <style>
