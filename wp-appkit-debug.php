@@ -5,7 +5,7 @@
   Description: Display WP-AppKit debug information in Back Office
   Author:      Uncategorized Creations
   Author URI:  http://getwpappkit.com
-  Version:     1.0.0
+  Version:     1.0.1
   License:     GPL-2.0+
   License URI: http://www.gnu.org/licenses/gpl-2.0.txt
   Copyright:   2013-2016 Uncategorized Creations
@@ -83,7 +83,15 @@ class WpAppKitDebug {
                     <th>Home url</th>
                     <td><?php echo $home_url ?></td>
                 </tr>
-                <tr>
+		<tr>
+                    <th>Site url</th>
+                    <td><?php echo site_url() ?></td>
+                </tr>
+		<tr>
+                    <th>ABSPATH</th>
+                    <td><?php echo ABSPATH ?></td>
+                </tr>
+		<tr>
                     <th>First app found</th>
                     <td><?php echo $first_app ? $first_app->post_title : 'None' ?></td>
                 </tr>
